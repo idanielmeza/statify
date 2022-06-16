@@ -1,0 +1,97 @@
+a:link, a:visited, a:active {
+    text-decoration:none;
+    color: #000;
+}
+
+
+.perfil{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    background-color: #000;
+}
+
+.imagen-perfil{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 1rem;
+    box-shadow: .5px 0 5px rgba(25, 226, 6, 0.7);
+}
+
+.nombre{
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+.footer-pagina{
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    /* padding: 1rem; */
+}
+
+@media(max-width: 768px){
+    .imagen-perfil{
+        width: 60px;
+        height: 60px;
+    }
+    
+    .perfil{
+        justify-content: center;
+    }
+
+}
+
+
+/* Lista */
+.lista-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #000;
+}
+
+.lista-imagen{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 1rem;
+    box-shadow: .5px 0 5px rgba(65, 65, 65, 0.7);
+}
+
+.lista-artista{
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-left: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.lista-artista:hover{
+    color: rgb(189, 189, 189);
+}
+
+
+/* Cambios Bootstrap */
+.tops{
+    color: #1db954;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tops:hover{
+    color: #15a146;
+}
