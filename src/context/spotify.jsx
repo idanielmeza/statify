@@ -67,6 +67,7 @@ const SpotifyProvider = ({ children }) => {
                        name: item.name,
                        url: item.external_urls.spotify,
                        image: item.images[0].url,
+                       genres: item.genres.join(', ')
                    }
                ));
             }else if (type === 'tracks'){

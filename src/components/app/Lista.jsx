@@ -9,12 +9,18 @@ const Lista = () => {
     if(!data.length) return <p>Loading...</p>;
 
     return ( 
-        <ul class="list-group list-group-flush container">
+        <ul class="list-group list-group-flush container mx-auto">
             {data.map((item,index) => (
-                <li class="list-group-item">
-                    <span className='text-muted'>#{index+1}</span>
-                    <img src={item.image} className='lista-imagen'/>
-                    <a href={item.url} target='__blank' className='list-artista'>{item.name}</a>
+                <li class="lista-item">
+                    <div className='d-flex align-items-center'> 
+                        <span className='text-muted'>#{index+1}</span>
+                        <img src={item.image} className='lista-imagen'/>
+                    </div>
+                    <div className=''>
+                        <a href={item.url} target='__blank' className='lista-artista'>{item.name}</a>
+                        <p className='text-muted'>{item.genres}</p>
+                    </div>
+                    
                 </li>
             ))}
         </ul>

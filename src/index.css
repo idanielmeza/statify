@@ -56,9 +56,10 @@ a:link, a:visited, a:active {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
     padding: 1rem;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid rgb(199, 199, 199);
+    width: 90%;
+    margin: 0 auto;
 }
 
 .lista-imagen{
@@ -74,7 +75,7 @@ a:link, a:visited, a:active {
     color: #fff;
     font-size: 1.2rem;
     font-weight: bold;
-    margin-left: 1rem;
+    margin-left: 0.1rem;
     text-decoration: none;
     cursor: pointer;
 }
