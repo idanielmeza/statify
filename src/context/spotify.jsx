@@ -1,5 +1,5 @@
-import React,{ createContext, useState } from "react";
-
+import React,{ createContext, useReducer } from "react";
+import reducer from './reducer';
 
 export const SpotifyContext = createContext();
 
@@ -11,37 +11,89 @@ const SpotifyProvider = ({ children }) => {
     const scopes = ['user-read-private', 'user-read-email','user-top-read'];
     const scopes_url = scopes.join('%20');
 
-    const [token, setToken] = useState(null);
-    const [user, setUser] = useState(null);
-    const [type, setType] = useState('artists');
-    const [top, setTop] = useState(10);
-    const [time, setTime] = useState('short_term');
-    const [data, setData] = useState([]);
+    const initialState = {
+        token: null,
+        user: null,
+        type: 'tracks',
+        top: 10,
+        time: 'short_term',
+        data: []
+    }
+
+    const [state,dispatch] = useReducer(reducer, initialState);
+
+    const setToken = (token)=>{
+        console.log('Agregando token')
+        dispatch({
+            type: 'SET_TOKEN',
+            payload: token
+        })
+        console.log('Se agrego token')
+    }
+
+    const setType = (type)=>{
+        dispatch({
+            type: 'SET_TYPE',
+            payload: type
+        })
+    }
+
+    const setUser = (user)=>{
+        dispatch({
+            type: 'SET_USER',
+            payload: user
+        })
+    }
+
+    const setTop = (top)=>{
+        dispatch({
+            type: 'SET_TOP',
+            payload: top
+        })
+    }
+
+    const setTime = (time)=>{
+        dispatch({
+            type: 'SET_TIME',
+            payload: time
+        })
+    }
+
+    const setData = (data)=>{
+        dispatch({
+            type: 'SET_DATA',
+            payload: data
+        })
+    }
 
     const login = ()=>{
         window.location.href = `${spotify_auth_url}?client_id=${client_id}&redirect_uri=${redirect_url}&scope=${scopes_url}&response_type=token&show_dialog=true`;
-
     }
 
     const getUser = async()=>{
         try {
-            const resp = await fetch('https://api.spotify.com/v1/me',{
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
-                }
-            })
-            const data = await resp.json();
+            if(!state.user){
+                const resp = await fetch('https://api.spotify.com/v1/me',{
+                headers: {
+                    Authorization: `Bearer ${state.token}`,
+                    'Content-Type': 'application/json'
+                    }
+                })
+                const data = await resp.json();
 
-            const {display_name} = data;
-            const image = data.images[0].url;
+                const {display_name} = data;
+                const image = data.images[0].url;
+                
+                setUser({
+                    display_name,
+                    image
+                })
+
+                await getData();
+            }else{
+                await getData();
+            }
             
-            setUser({
-                display_name,
-                image
-            })
-
-            await getData();
 
         } catch (error) {
             console.log(error);   
@@ -50,27 +102,27 @@ const SpotifyProvider = ({ children }) => {
 
     const getData = async()=>{
         try {
-            const resp = await fetch(`https://api.spotify.com/v1/me/top/${type}?limit=${top}&time_range=${time}`,{
+
+            const resp = await fetch(`https://api.spotify.com/v1/me/top/${state.type}?limit=${state.top}&time_range=${state.time}`,{
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${state.token}`,
                 'Content-Type': 'application/json'
             }
             })
             const data = await resp.json();
-            console.log(data);
             
             let info = null;
 
-            if(type === 'artists'){
+            if(state.type === 'artists'){
                 info = data.items.map(item=>(
                     {
                        name: item.name,
                        url: item.external_urls.spotify,
                        image: item.images[0].url,
-                       genres: item.genres.join(', ')
+                       artists: item.genres.join(', ')
                    }
                ));
-            }else if (type === 'tracks'){
+            }else if (state.type === 'tracks'){
                 info = data.items.map(item=>({
                     name: item.name,
                     url: item.external_urls.spotify,
@@ -78,8 +130,6 @@ const SpotifyProvider = ({ children }) => {
                     artists: item.artists.map(artist=>artist.name).join(', ')
                 }))
             }
-
-            console.log(info);
 
             setData(info);
             
@@ -91,16 +141,21 @@ const SpotifyProvider = ({ children }) => {
     return (
         <SpotifyContext.Provider
             value={{
-                login,
-                token,
+                token: state.token,
+                user: state.user,
+                type: state.type,
+                top: state.top,
+                time: state.time,
+                data: state.data,
                 setToken,
-                getUser,
-                user,
                 setType,
+                setUser,
                 setTop,
                 setTime,
-                getData,
-                data
+                setData,
+                login,
+                getUser,
+                getData
             }}
         >
             {children}

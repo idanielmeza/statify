@@ -56,10 +56,13 @@ a:link, a:visited, a:active {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 1rem;
     border-bottom: 1px solid rgb(199, 199, 199);
     width: 90%;
     margin: 0 auto;
+}
+
+.lista-item:first-child{
+    margin-top: 1rem;
 }
 
 .lista-imagen{

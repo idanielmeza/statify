@@ -6,6 +6,8 @@ const PrivateRoute = ({children}) => {
 
     const {token} = useContext(SpotifyContext);
 
+    console.log(token)
+
     return ( 
 
         !token ?(

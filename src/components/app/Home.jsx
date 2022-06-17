@@ -5,7 +5,9 @@ import Lista from "./Lista";
 
 const Home = () => {
 
-    const {getUser, user, setTop, setTime, getData, setType} = useContext(SpotifyContext);
+    const {getUser, user, setTop, setTime, getData, setType,
+        top,type,time
+    } = useContext(SpotifyContext);
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -28,7 +30,7 @@ const Home = () => {
 
     useEffect(() =>{
         init();
-    },[])
+    },[top,time,type]);
 
     if(!user) return <p>Loading...</p>
 
@@ -51,7 +53,6 @@ const Home = () => {
                         onClick={()=>handleType('tracks')}
                     className='tops text-center'>Top Tracks</p>
                 </div>
-                
                 
             </nav>
 
