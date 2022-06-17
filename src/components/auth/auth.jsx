@@ -21,7 +21,8 @@ const Auth = () => {
 
     const params = getParamsFromSpotifyAuth(window.location.hash);
     const {access_token} = params;
-    
+
+
     useEffect(() => {
         setToken(access_token);
         navigate('/app');

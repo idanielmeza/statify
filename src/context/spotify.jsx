@@ -1,5 +1,6 @@
 import React,{ createContext, useReducer } from "react";
 import reducer from './reducer';
+import axios from 'axios';
 
 export const SpotifyContext = createContext();
 
@@ -79,6 +80,7 @@ const SpotifyProvider = ({ children }) => {
                     'Content-Type': 'application/json'
                     }
                 })
+
                 const data = await resp.json();
 
                 const {display_name} = data;

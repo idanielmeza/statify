@@ -1,6 +1,5 @@
 import React,{ useContext , useEffect, Fragment} from "react";
 import { SpotifyContext } from "../../context/spotify";
-import Footer from "../footer";
 import Lista from "./Lista";
 
 const Home = () => {

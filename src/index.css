@@ -38,18 +38,6 @@ a:link, a:visited, a:active {
     /* padding: 1rem; */
 }
 
-@media(max-width: 768px){
-    .imagen-perfil{
-        width: 60px;
-        height: 60px;
-    }
-    
-    .perfil{
-        justify-content: center;
-    }
-
-}
-
 
 /* Lista */
 .lista-item{
@@ -85,6 +73,40 @@ a:link, a:visited, a:active {
 
 .lista-artista:hover{
     color: rgb(189, 189, 189);
+}
+
+
+@media(max-width: 768px){
+    .imagen-perfil{
+        width: 60px;
+        height: 60px;
+    }
+    
+    .perfil{
+        justify-content: center;
+    }
+
+    .nav{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 auto;
+    }
+
+    .lista-imagen{
+        width: 55px;
+        height: 55px;
+    }
+
+    .lista-artista{
+        font-size: 1rem;
+    }
+
+    .text-muted{
+        font-size: 0.9rem;
+    }
+
 }
 
 
