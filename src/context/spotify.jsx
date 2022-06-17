@@ -7,7 +7,7 @@ const SpotifyProvider = ({ children }) => {
 
     const client_id = 'ba13ac5a9a6a4676b5708b322fa8cdce';
     const spotify_auth_url = 'https://accounts.spotify.com/authorize';
-    const redirect_url = 'http://localhost:3000/auth';
+    const redirect_url = `${window.location.origin}/auth`;
     const scopes = ['user-read-private', 'user-read-email','user-top-read'];
     const scopes_url = scopes.join('%20');
 
