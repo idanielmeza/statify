@@ -1,4 +1,4 @@
-import React,{ useContext , useEffect, Fragment} from "react";
+import React,{ useContext , useEffect, Fragment, useState} from "react";
 import { SpotifyContext } from "../../context/spotify";
 
 import Lista from "./Lista";
@@ -11,6 +11,9 @@ const Home = () => {
     const {getUser, user, setTop, setTime, getData, setType,
         top,type,time
     } = useContext(SpotifyContext);
+
+    const [desing, setDesing] = useState(true);
+
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -61,7 +64,7 @@ const Home = () => {
 
             <div className="container">
                 <div className="row">
-                    <div className="col-md-6 mt-2">
+                    <div className="col-md-4 mt-2">
                     <select
                     name='top'
                     onChange={handleChange}
@@ -71,7 +74,7 @@ const Home = () => {
                         <option value="50">Top 50</option>
                     </select>
                     </div>
-                <div className="col-md-6 mt-2">
+                <div className="col-md-4 mt-2">
                     <select
                     name='time'
                     onChange={handleChange}
@@ -81,14 +84,28 @@ const Home = () => {
                         <option value="long_term">All of time</option>
                     </select>
                 </div>
+
+                <div className="col-md-4 mt-2">
+                    <select
+                    name='time'
+                    onChange={()=>{
+                        setDesing(!desing);
+                    }}
+                    class="form-select" aria-label="Default select example">
+                        <option value="short_term">Flat</option>
+                        <option value="medium_term">Spotify</option>
+                    </select>
+                </div>
             </div>
             </div>
 
-            <Tracks/>
+            {desing ?
+                <Lista />
+                :
+                <Tracks/>
+            }
 
-            {/* <Lista/> */}
 
-            {/* <Footer/> */}
         </Fragment>
      );
 }

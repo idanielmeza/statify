@@ -42,7 +42,6 @@ const Tracks = () => {
               </button>
         </div>
 
-        <div className='mx-auto text-center my-4'>
         <div ref={tracksRef} className='contenedor-tracks'>
             <div className='contenedor-titulo'>
                 <h1 className='titulo-nombre text-center'>{`${user.display_name} Top ${top} ${type}`} </h1>
@@ -68,7 +67,6 @@ const Tracks = () => {
                 </li>
                 </ul>
             </div>
-        </div>
         </div>
         </>
      );
