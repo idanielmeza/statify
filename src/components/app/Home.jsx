@@ -1,8 +1,12 @@
 import React,{ useContext , useEffect, Fragment} from "react";
 import { SpotifyContext } from "../../context/spotify";
+
 import Lista from "./Lista";
+import Tracks from '../tracks/Tracks';
 
 const Home = () => {
+
+    // const navigate = useNavigate();
 
     const {getUser, user, setTop, setTime, getData, setType,
         top,type,time
@@ -26,7 +30,7 @@ const Home = () => {
     const init = async()=>{
         await getUser();
     }
-
+    
     useEffect(() =>{
         init();
     },[top,time,type]);
@@ -52,7 +56,7 @@ const Home = () => {
                         onClick={()=>handleType('tracks')}
                     className='tops text-center'>Top Tracks</p>
                 </div>
-                
+
             </nav>
 
             <div className="container">
@@ -80,7 +84,9 @@ const Home = () => {
             </div>
             </div>
 
-            <Lista type={setType}/>
+            <Tracks/>
+
+            {/* <Lista/> */}
 
             {/* <Footer/> */}
         </Fragment>

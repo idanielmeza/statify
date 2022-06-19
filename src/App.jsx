@@ -4,6 +4,8 @@ import SpotifyProvider from './context/spotify';
 import Home from './components/app/Home';
 import React from 'react';
 
+import Tracks from './components/tracks/Tracks';
+
 import {Routes, BrowserRouter, Route} from 'react-router-dom';
 import PrivateRoute from './components/routes/privateRoute';
 
@@ -14,6 +16,7 @@ const App = () => {
       <Routes>
         <Route path="/auth" element={<Auth/>}/>
         <Route path="/" element={<Login/>}/>
+        <Route path="/tracks" element={<Tracks/>}/>
         <Route path='/app' element={
           <PrivateRoute>
             <Home/>

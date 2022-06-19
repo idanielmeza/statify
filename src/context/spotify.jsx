@@ -1,6 +1,5 @@
 import React,{ createContext, useReducer } from "react";
 import reducer from './reducer';
-import axios from 'axios';
 
 export const SpotifyContext = createContext();
 
@@ -86,9 +85,13 @@ const SpotifyProvider = ({ children }) => {
                 const {display_name} = data;
                 const image = data.images[0].url;
                 
+                const respImage = await fetch(image);
+                const imageData = await respImage.blob();
+                const imageUrl = URL.createObjectURL(imageData);
+
                 setUser({
                     display_name,
-                    image
+                    image: imageUrl
                 })
 
                 await getData();
@@ -133,6 +136,20 @@ const SpotifyProvider = ({ children }) => {
                 }))
             }
 
+            const imagesAryy = info.map(item=>(item.image));
+
+            const images = await Promise.all(
+                imagesAryy.map(async image=>{
+                    const resp = await fetch(image);
+                    const data = await resp.blob();
+                    return URL.createObjectURL(data);
+                }
+            ))
+
+            info.forEach((item,index)=>{
+                item.image = images[index];
+            })
+
             setData(info);
             
         } catch (error) {
@@ -149,6 +166,7 @@ const SpotifyProvider = ({ children }) => {
                 top: state.top,
                 time: state.time,
                 data: state.data,
+                images: state.images,
                 setToken,
                 setType,
                 setUser,
