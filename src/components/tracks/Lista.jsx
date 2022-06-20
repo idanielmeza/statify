@@ -1,7 +1,6 @@
 import React from 'react'
 import { useContext, useRef } from 'react'
 import { SpotifyContext } from '../../context/spotify'
-import Tracks from '../tracks/Tracks';
 import html2canvas from "html2canvas";
 
 const Lista = () => {

@@ -14,7 +14,7 @@ const Login = () => {
         <>
         <div className="container mt-5">
             <div className='mx-auto mt-5 text-center mt-5'>
-                <p className=" mt-5 d-inline-flex py-2 px-5 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Bienvenido a Staftify Inicias Sesion Para Comenzar</p>
+                <p className=" mt-5 d-inline-flex py-2 px-5 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Welcome to Statify</p>
             </div>
             <div className='d-flex'>
             <button 

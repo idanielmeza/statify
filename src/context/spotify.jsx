@@ -115,6 +115,10 @@ const SpotifyProvider = ({ children }) => {
             }
             })
             const data = await resp.json();
+
+            console.log(state.top);
+
+            console.log(data);
             
             let info = null;
 

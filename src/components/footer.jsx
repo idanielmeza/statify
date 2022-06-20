@@ -7,8 +7,8 @@ const Footer = () => {
     return (  
         <footer className="footer-pagina">
         <div className="text-center p-4">
-            <p className="text-reset fw-bold" href="#"> Desarrolado por LedezmaDev</p>
-            © {year} Statify
+            <p className="text-reset fw-bold" href="#"> Developed by LedezmaDev</p>
+             Statify © {year}
         </div>
         </footer>
     );

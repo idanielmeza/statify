@@ -1,7 +1,7 @@
 import React,{ useContext , useEffect, Fragment, useState} from "react";
 import { SpotifyContext } from "../../context/spotify";
 
-import Lista from "./Lista";
+import Lista from "../tracks/Lista";
 import Tracks from '../tracks/Tracks';
 
 const Home = () => {
@@ -93,7 +93,7 @@ const Home = () => {
                     }}
                     class="form-select" aria-label="Default select example">
                         <option value="short_term">Flat</option>
-                        <option value="medium_term">Spotify</option>
+                        <option value="medium_term">Statify</option>
                     </select>
                 </div>
             </div>
