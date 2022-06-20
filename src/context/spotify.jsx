@@ -83,8 +83,17 @@ const SpotifyProvider = ({ children }) => {
                 const data = await resp.json();
 
                 const {display_name} = data;
-                const image = data.images[0].url;
+
+                console.log(data);
+
+                let image;
                 
+                if(!data.images.length){
+                    image = 'https://i.scdn.co/image/ab67616d00001e0299760923cfbfe739fb870817';
+                }else{
+                    image = data.images[0].url;
+                }
+
                 const respImage = await fetch(image);
                 const imageData = await respImage.blob();
                 const imageUrl = URL.createObjectURL(imageData);
